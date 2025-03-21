@@ -85,8 +85,7 @@ git reset --hard 0cb7ee
 git remote add origin https://github.com/Robert-Liu-31039/html-demo.git
 
 23. 檢視雲端倉庫 url
-git remote -v
--> 會回傳 origin https://github.com/Robert-Liu-31039/html-demo
+git remote -v <- 會回傳 origin https://github.com/Robert-Liu-31039/html-demo
 
 24. 推送至雲端倉庫
 git push -u origin master <- 第一次推送

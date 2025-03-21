@@ -16,6 +16,9 @@ D -> Delete (檔案被刪除了)
 ※修改後的檔案，需要再次 git add 才會將記錄刷新至 git 中
 ※刪除後的檔案，需要再次 git add 才會將記錄刷新至 git 中
 
+4.5 將 誤加入 暫存區 的檔案恢復為 U 的狀態
+git restore --staged @file_name
+
 5. 加入暫存區的控管
 git add 1.txt
 git add . <- 全部的新增檔案都加入控管

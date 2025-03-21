@@ -82,14 +82,16 @@ git reset --hard 0cb7ee
 ※ 0cb7ee 取的是 git commit 代碼的前 6 碼
 
 22. 第一次加上雲端倉庫
-git push -u origin master
+git remote add origin https://github.com/Robert-Liu-31039/html-demo.git
 
 23. 檢視雲端倉庫 url
 git remote -v
 -> 會回傳 origin https://github.com/Robert-Liu-31039/html-demo
 
 24. 推送至雲端倉庫
-git push
+git push -u origin master <- 第一次推送
+
+git push <- 第二次以後的推送
 
 25. 複製專案
 git clone https://github.com/Robert-Liu-31039/html-demo.git

@@ -1,0 +1,109 @@
+1. 檢查 git 版本
+git --version
+
+2. 建立使用者資訊
+git config --global user.name robert
+git config --global user.email robert31039@gmail.com
+
+3. 初始化倉庫 -> 建立新的 .git 列管
+git init
+
+4. 暫存區的檔案狀態類型
+U -> UnTrack (未追蹤)
+A -> Added (加入追蹤)
+M -> Modified (與 git 記錄不一致)
+D -> Delete (檔案被刪除了)
+※修改後的檔案，需要再次 git add 才會將記錄刷新至 git 中
+※刪除後的檔案，需要再次 git add 才會將記錄刷新至 git 中
+
+5. 加入暫存區的控管
+git add 1.txt
+git add . <- 全部的新增檔案都加入控管
+
+6. 觀看目前的控管狀態
+git status
+
+7. 檢查物件對應檔案的狀態
+git ls-files
+git ls-files -s
+
+8. 檢視物件內容(-p)跟型態(-t)
+git cat-file -p d80088 
+git cat-file -t d80088
+※ d80088 取的是 git 的物件代碼的前 6 碼
+
+9. 反悔將暫存區修改的內容改回來
+git restore 3.txt
+
+10. 將目前暫存區的檔案變動 commit 至 .git 中
+git commit -m "新增的理由"
+git commit <- 進入 Linux 的 vim 模式，可以大量寫理由
+
+11. 檢視現在 主線/支線 上的 git commit 的 log
+git log
+git log --oneline <- 全部的 log 用一行呈現
+
+12. 切換 commit
+git checkout 0cb7ee
+※ 0cb7ee 取的是 git commit 代碼的前 6 碼
+
+13. 檢視目前 git 的分支
+git branch
+
+14. 建立新的分支
+git branch @branch_name
+
+15. 切換分支
+git checkout @branch_name
+
+16. 合併分支
+git merge @branch_name
+※ 合併分支之前，要先 git checkout @主分支 之上，分支不能合併分支自己!
+
+17. 刪除分支
+git branch -D @branch_name
+
+18. 產生分支，且切換至分支
+git checkout -b @branch_name
+
+19. 合併失敗(衝突) 的解決方式
+step 1. 選擇本分支/其他分支/兩個都保留
+step 2. git merge --abort  <- 取消合併
+step 3. git add .
+step 4. git commit -m "合併後修正完畢"
+
+20. 觀看完整的 commit 的紀錄(現在 主線/支線 上的)，比 git log 更加詳細
+git reflog
+
+21. 重置指令
+git reset 0cb7ee
+
+git reset --hard 0cb7ee
+※ 0cb7ee 取的是 git commit 代碼的前 6 碼
+
+22. 加上雲端倉庫
+
+23. 檢視雲端倉庫 url
+git remote -v
+origin https://github.com/Robert-Liu-31039/html-demo
+
+### 常用指令
+1. git init
+2. git add .
+3. git status
+4. git commit 
+5. git log
+6. git checkout @branch_name/@commit_id
+7. git checkout . <- 將已列入 git 的檔案，恢復為尚未 add 前的變動
+8. git branch
+9. git checkout -b @branch_name
+10. git merge @branch_name <- 合併其他分支
+11. git reflog
+12. git reset --hard @commit_id
+13. git reset --hard HEAD~1 <- 將 git 切至 再前 1 個 Commit 的紀錄上
+    git reset --hard HEAD~2 <- 將 git 切至 再前 2 個 Commit 的紀錄上
+
+
+
+
+

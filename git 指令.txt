@@ -98,6 +98,9 @@ git push <- 第二次以後的推送
 25. 複製專案
 git clone https://github.com/Robert-Liu-31039/html-demo.git
 
+26. 將雲端的 git 程式碼更新至 本機的 git 上
+git pull
+
 ### 常用指令
 1. git init
 2. git add .

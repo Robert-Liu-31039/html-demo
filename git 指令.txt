@@ -101,6 +101,10 @@ git clone https://github.com/Robert-Liu-31039/html-demo.git
 26. 將雲端的 git 程式碼更新至 本機的 git 上
 git pull
 
+27. 合併 commit (不想再額外多一個 Commit 的紀錄)
+git add .
+git commit --amend
+
 ### 常用指令
 1. git init
 2. git add .

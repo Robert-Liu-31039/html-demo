@@ -6,8 +6,8 @@
     <title>首頁</title>
     
     <!-- 影響整個網頁 css 設計 -->
-    <style>
-        h2{
+    <style>        
+        .title{
             color: blueviolet; 
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background-color: rgb(255, 219, 19);
@@ -22,7 +22,47 @@
             */
             display: inline-block; 
             width: 600px;
+            margin: 10px 20px;
+            padding: 6px;
+            border: 1px solid rgb(214, 131, 131);
+            border-radius: 10px;
+        }
 
+        .main-title{
+            color: white;
+            background-color: rgb(0, 33, 48);
+            font-size: 2.5rem;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+            padding: 6px;
+
+            border-radius: 6px;
+        }
+
+        /* 
+        # -> id
+        . -> class
+        */
+        #table-bmi{
+            background-color: aqua;
+            width: 50%;
+            height: 200px;
+        }
+
+        thead{
+            background-color: aqua;
+        }
+
+        tbody{
+            background-color: coral;
+        }       
+
+        tr{
+            color: white;
+        }
+
+        thead tr{
+            color: black;            
         }
 
         body{
@@ -37,7 +77,7 @@
         <img width="100%" src="https://img.freepik.com/free-vector/fitness-gym-training-twitch-banner_23-2150681508.jpg?t=st=1742559566~exp=1742563166~hmac=9a8dfeef487474ff6b4939df0d78e3ada43d0812121fa8d78db6867dc2412b45&w=900" alt="">
     </a>
 
-    <h1 style="color: deepskyblue;background-color: rgb(0, 33, 48);">我愛健身網站</h1>
+    <div class="main-title">我愛健身網站</div>
     <h3>
         何謂健身?<br>
         健身，英文稱為workout，健身這兩個字拆開來的意思就是健康身體，通過各種運動方式或方法來增強力量、增加肌肉量、柔韌性、耐力，以及提高協調和控制身體各部分的能力來使我們的身體更強健。
@@ -51,7 +91,7 @@
         舞臺上或者是電影螢幕上綻放光彩。答案就是<b>堅持運動健身!</b>
     </p>
     <hr>
-    <h2>健身的10個好處</h2>
+    <div class="title">健身的10個好處</div>
     <ol type="I">
         <li>增加基礎代謝率</li>
         <li>預防疾病和提高免疫力</li>
@@ -65,7 +105,7 @@
         <li>增加肌肉助於減肥</li>
     </ol>
     <hr>
-    <h2>好文章連結</h2>
+    <div class="title">好文章連結</div>
     <li>
         <a target="_blank" href="https://www.peeta.tw/weight-loss/intermittent-fasting/">間歇性斷食法完整攻略</a>
     </li>
@@ -79,8 +119,8 @@
         <a target="_blank" href="https://www.peeta.tw/workout/hypertrophy/">肌肥大原理、重點與課表安排</a>
     </li>
     <hr>
-    <h2>一天所需卡路里</h2>
-    <table border="1">
+    <div class="title">一天所需卡路里</div>
+    <table id="table-bmi" border="5">
         <thead>
             <tr>
                 <th>每天活動量</th>
@@ -118,22 +158,25 @@
     <b>計算所需熱量:</b>
     &nbsp;因他的工作為坐辦公室，屬輕量工作，每天攝取熱量應在1300至1625大卡之間(=20~25大卡*65公斤)。<br>
     
-    <h2>健身圖片</h2>
-    <hr>
-    <img width="32%" src="images/pic-1.jpg" alt="pic-1.jpg">
-    <img width="32%" src="images/pic-2.jpg" alt="pic-2.jpg">
-    <img width="32%" src="images/pic-3.jpg" alt="pic-3.jpg">
+    <div class="title">健身圖片</div>
+    <div>
+        <img width="32%" src="images/pic-1.jpg" alt="pic-1.jpg">
+        <img width="32%" src="images/pic-2.jpg" alt="pic-2.jpg">
+        <img width="32%" src="images/pic-3.jpg" alt="pic-3.jpg">
+    </div>
 
     <hr>
-    <h2>健身影片</h2>
-    <!-- 註解的快捷鍵 : "ctrl" + "/" -->
-    <!-- <video controls src="video/SampleVideo_720x480_5mb.mp4"></video> -->
-    <!-- 
-        video Tag 中若無 controls 這個 attribute，畫面呈現上就僅剩不會動的一張截圖 
-        video Tag 中若有 controls 這個 attribute，影片就具有撥放跟下載的功能
-    -->
-    <video width="48%" src="video/SampleVideo_720x480_5mb.mp4"></video>
-    <video width="48%" controls src="video/SampleVideo_720x480_5mb.mp4"></video>
+    <div class="title">健身影片</div>
+    <div>
+        <!-- 註解的快捷鍵 : "ctrl" + "/" -->
+        <!-- <video controls src="video/SampleVideo_720x480_5mb.mp4"></video> -->
+        <!-- 
+            video Tag 中若無 controls 這個 attribute，畫面呈現上就僅剩不會動的一張截圖 
+            video Tag 中若有 controls 這個 attribute，影片就具有撥放跟下載的功能
+        -->
+        <video width="48%" src="video/SampleVideo_720x480_5mb.mp4"></video>
+        <video width="48%" controls src="video/SampleVideo_720x480_5mb.mp4"></video>
+    </div>
     <br>
     <br>
     <iframe width="48%" height="360" src="https://www.youtube.com/embed/L1BTJsDAWjo" title="7 分鐘居家徒手腹肌訓練【初級版】無裝備｜7 Min Standing Abs workout｜非常適合初學者入門也有效加强核心的訓練｜男生和女生都適合的健身訓練【健身運動】" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

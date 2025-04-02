@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI計算機</title>
+
+    <style>        
+        .title{
+            color: blueviolet; 
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: rgb(255, 219, 19);
+
+            /* 1rem == 16px */
+            font-size: 2rem; 
+
+            /* 
+            block -> 佔領整列
+            inline -> 只佔領物件的真實寬度
+            inline-block -> 指定佔領的特定寬度
+            */
+            display: inline-block; 
+            width: 600px;
+            margin: 10px 20px;
+            padding: 6px;
+            border: 1px solid rgb(214, 131, 131);
+            border-radius: 10px;
+        }
+
+        .form-style{            
+            background-color: white;
+            padding: 5px;
+            border: 1px solid;
+            border-radius: 6px;
+            margin: 10px;
+        }
+
+        body{
+            background-color: rgb(246, 255, 215);
+            font-family: "標楷體",'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>BMI計算機</h1>
-    <form action="">
+    <div class="title">BMI計算機</div>
+    <form class="form-style" action="">
         <label for="username">姓名</label>
         <input id="username" name="username" type="text" placeholder="請輸入姓名">
         <br>

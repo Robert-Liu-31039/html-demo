@@ -4,42 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>首頁</title>
-    
+
+    <link rel="stylesheet" href="css/style.css">
+
     <!-- 影響整個網頁 css 設計 -->
-    <style>        
-        .title{
-            color: blueviolet; 
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            background-color: rgb(255, 219, 19);
-
-            /* 1rem == 16px */
-            font-size: 2rem; 
-
-            /* 
-            block -> 佔領整列
-            inline -> 只佔領物件的真實寬度
-            inline-block -> 指定佔領的特定寬度
-            */
-            display: inline-block; 
-            width: 600px;
-            margin: 10px 20px;
-            padding: 6px;
-            border: 1px solid rgb(214, 131, 131);
-            border-radius: 10px;
-        }
-
-        .main-title{
-            color: white;
-            background-color: rgb(0, 33, 48);
-            font-size: 2.5rem;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-            padding: 6px;
-
-            border-radius: 6px;
-        }
-
-        #picture{
+    <style>
+        #picture {
             text-align: center;
         }
 
@@ -47,50 +17,44 @@
         # -> id
         . -> class
         */
-        #table-bmi{
+        #table-bmi {
             background-color: aqua;
             width: 50%;
             height: 200px;
             margin: 0 auto;
         }
 
-        thead{
+        thead {
             background-color: aqua;
         }
 
-        tbody{
+        tbody {
             background-color: coral;
-        }       
+        }
 
-        tr{
+        tr {
             color: white;
         }
 
-        thead tr{
-            color: black;            
+        thead tr {
+            color: black;
         }
 
-        .image-style{            
+        .image-style {
             background-color: white;
             padding: 2px;
             border: 1px solid;
             border-radius: 6px;
             width: 30%;
         }
-
-        body{
-            background-color: rgb(246, 255, 215);
-            font-family: "標楷體",'Arial Narrow Bold', sans-serif;
-            text-align: center;
-        }
-
-        
     </style>
 </head>
 
 <body>
     <a target="_blank" href="https://zh.freepik.com/">
-        <img width="100%" src="https://img.freepik.com/free-vector/fitness-gym-training-twitch-banner_23-2150681508.jpg?t=st=1742559566~exp=1742563166~hmac=9a8dfeef487474ff6b4939df0d78e3ada43d0812121fa8d78db6867dc2412b45&w=900" alt="">
+        <img width="100%"
+            src="https://img.freepik.com/free-vector/fitness-gym-training-twitch-banner_23-2150681508.jpg?t=st=1742559566~exp=1742563166~hmac=9a8dfeef487474ff6b4939df0d78e3ada43d0812121fa8d78db6867dc2412b45&w=900"
+            alt="">
     </a>
 
     <div class="main-title">我愛健身網站</div>
@@ -171,7 +135,7 @@
             <b>計算BMI:</b>
         </a>
         &nbsp;一位民眾身高160公分，體重65公斤，BMI25.4kg/m2(=65÷1.6÷1.6)，體重屬於「過重」。<br>
-    
+
         <b>計算所需熱量:</b>
         &nbsp;因他的工作為坐辦公室，屬輕量工作，每天攝取熱量應在1300至1625大卡之間(=20~25大卡*65公斤)。<br>
     </div>
@@ -192,11 +156,18 @@
             video Tag 中若有 controls 這個 attribute，影片就具有撥放跟下載的功能
         -->
         <video width="48%" src="video/SampleVideo_720x480_5mb.mp4"></video>
-        <video width="48%" controls src="video/SampleVideo_720x480_5mb.mp4"></video>    
+        <video width="48%" controls src="video/SampleVideo_720x480_5mb.mp4"></video>
         <br>
         <br>
-        <iframe width="48%" height="360" src="https://www.youtube.com/embed/L1BTJsDAWjo" title="7 分鐘居家徒手腹肌訓練【初級版】無裝備｜7 Min Standing Abs workout｜非常適合初學者入門也有效加强核心的訓練｜男生和女生都適合的健身訓練【健身運動】" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="48%" height="360" src="https://www.youtube.com/embed/LmrKejHOaG4" title="男女適用!! 20分鐘 站立式全身燃脂運動、不跳躍、不傷膝、簡單有效" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="48%" height="360" src="https://www.youtube.com/embed/L1BTJsDAWjo"
+            title="7 分鐘居家徒手腹肌訓練【初級版】無裝備｜7 Min Standing Abs workout｜非常適合初學者入門也有效加强核心的訓練｜男生和女生都適合的健身訓練【健身運動】"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="48%" height="360" src="https://www.youtube.com/embed/LmrKejHOaG4"
+            title="男女適用!! 20分鐘 站立式全身燃脂運動、不跳躍、不傷膝、簡單有效" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
 </body>

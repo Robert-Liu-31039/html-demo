@@ -172,6 +172,45 @@
             alert(result2);
         }
 
+        // 判斷式
+        if (x > 10) {
+
+        } else if (y > 20) {
+
+        } else {
+            console.log(x, y);
+        }
+
+        // 等號數量的差異
+        x = "10";
+        y = 10;
+        console.log("兩個等號 : " + (x == y)); // 兩個等號 : 只比較值是否相同
+        console.log("三個等號 : " + (x === y)); // 三個等號代表 : 型態 跟 值 都要相等
+
+        // and or not
+        if (x >= 10 || y <= 30) {
+            console.log("1");
+        }
+
+        // true false
+        let a = false;
+        if (!a) {
+            console.log(a);
+        }
+
+
+        let height = prompt("請輸入身高(cm)");
+        let weight = prompt("請輸入體重(kg)");
+        let bmi = getBmi(height, weight);
+
+        alert("BMI:" + bmi);
+
+        // 計算 BMI 函式
+        function getBmi(height, weight) {
+            const bmi = weight / (height / 100) ** 2;
+            console.log(bmi.toFixed(2)); // .toFixed(@小數點後幾位數) -> 取特定長度的浮點數
+            return bmi.toFixed(2);
+        }
 
     </script>
 </body>

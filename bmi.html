@@ -18,8 +18,11 @@
         }
 
         form {
+            /* 將 form 當作標的物，讓別的物件來做參照使用 */
+            position: relative;
+
             background-color: chocolate;
-            width: 40%;
+            width: 60%;
 
             /* 
             當有私訂設定 width 時，
@@ -70,6 +73,9 @@
         }
 
         a {
+            /* 設定再參照物件中，本身的絕對位置 */
+            position: absolute;
+
             background-color: red;
             color: white;
             padding: 12px;
@@ -77,31 +83,35 @@
 
             /* 去除底線 */
             text-decoration: none;
+
+            right: 6px;
+            top: 12px;
         }
 
         a:hover {
             color: yellow;
         }
 
-        #info {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
         #result {
             font-size: 2rem;
             font-weight: bold;
+            background-color: rgb(197, 245, 213);
+            width: 80%;
+            margin: 24px auto;
+            padding: 12px 24px;
+            border: 1px dotted darkblue;
         }
 
         .comment {
             font-size: 1.5rem;
-            font-weight: 100;
+            font-weight: 200;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
         /* 響應式設計 CSS 的寫法 */
         @media screen and (max-width:1024px) {
             form {
-                width: 60%;
+                width: 70%;
             }
 
             label {
@@ -123,6 +133,7 @@
 
 <body>
     <div class="main-title">BMI計算機</div>
+    <div id="record"></div>
     <form class="form-style" action="">
         <label for="username">姓名</label>
         <input id="username" name="username" type="text" placeholder="請輸入姓名">
@@ -149,18 +160,16 @@
             </select>
         </div>
         <button type="button" onclick="calc()">計算</button>
+        <a href="index.html">首頁</a>
     </form>
     <div id="info">
-        <p>姓名: <span class="name"></span></p>
-        <p>年齡: <span class="age"></span></p>
-        <p>性別: <span class="sex"></span></p>
-        <p>居住城市: <span class="country"></span></p>
     </div>
-    <div id="result">
+    <!-- hidden 會將區塊隱藏起來 -->
+    <div id="result" hidden="true">
         BMI: <span class="bmi"></span>
         <p class="comment"></p>
     </div>
-    <a href="index.html">首頁</a>
+
     <script>
         const usernameEl = document.querySelector("#username");
         const ageEl = document.querySelector("#age");
@@ -172,6 +181,12 @@
             heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
 
+        //物件
+        let data = {
+            total: 0,
+            count: 0
+        }
+
         function calc() {
             const height = heightEl.value;
             const weight = weightEl.value;
@@ -181,6 +196,8 @@
                 alert("請輸入正確數值!");
                 return;
             }
+
+            document.querySelector("#result").hidden = false;
 
             let bmi = getBmi(height, weight);
             let result = getComment(bmi);
@@ -197,10 +214,17 @@
             bmiEl.style.color = result[1];
             document.querySelector(".comment").innerText = result[0];
 
-            document.querySelector(".name").innerText = usernameEl.value;
-            document.querySelector(".age").innerText = ageEl.value;
-            document.querySelector(".sex").innerText = document.querySelector("input[name='sex']:checked").value;
-            document.querySelector(".country").innerText = countryEl.value;
+            //取得最新的選取性別
+            let sexEl = document.querySelector("input[name='sex']:checked");
+            let userInfo = `${usernameEl.value} 年齡:${ageEl.value} 性別:${sexEl.value} 縣市:${countryEl.value}`;
+            document.querySelector("#info").innerHTML = `<h2>${userInfo}</h1>`;
+
+            //紀錄每次的 bmi
+            data["total"] += Number(bmi); // Number() 將文字轉為數值
+            data.count += 1;
+            console.log(data);
+            let avg = (data.total / data.count).toFixed(1);
+            document.querySelector("#record").innerHTML = `紀錄人數:${data.count} 平均BMI:${avg}`;
         }
 
         function getComment(bmi) {

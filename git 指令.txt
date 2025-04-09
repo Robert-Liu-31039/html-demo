@@ -122,6 +122,15 @@ git commit --amend
     git reset --hard HEAD~2 <- 將 git 切至 再前 2 個 Commit 的紀錄上
 
 
+### 拉取雲端分支
+# 1. 觀察雲端分支
+git branch -r
+
+# 2. fetch 拉取缺少的分支
+git fetch
+
+# 3. 同步
+git checkout -b test origin/test
 
 
 

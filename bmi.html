@@ -116,7 +116,7 @@
         <input id="age" name="age" type="number" placeholder="18">
         <br>
         <label for="height">身高</label>
-        <input id="height" name="height" type="number" step="0.1">
+        <input id="height" name="height" type="number" step="0.1" value="178.5">
         <br>
         <label for="weight">體重</label>
         <input id="weight" name="weight" type="number" step="0.1">
@@ -133,82 +133,36 @@
                 <option value="高雄市">高雄市</option>
             </select>
         </div>
-        <button type="submit">計算</button>
+        <button type="button" onclick="calc()">計算</button>
     </form>
-
+    <div id="result"></div>
     <a href="index.html">首頁</a>
     <script>
-        let x = 10;
-        let y = 20;
-        let z = x + y;
+        const usernameEl = document.querySelector("#username");
+        const ageEl = document.querySelector("#age");
+        const heightEl = document.querySelector("#height");
+        const weightEl = document.querySelector("#weight");
+        const countryEl = document.querySelector("#country");
+        const sexEl = document.querySelector("input[name='sex']:checked");
+        console.log(usernameEl, ageEl, heightEl, weightEl, countryEl, sexEl,
+            heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
-        console.log(x, y, z);
 
-        const pi = 3.1515926;
-        // 宣告為 const 的變數就不能再給值了，否則會跳錯誤
-        //pi = 5.555;
+        function calc() {
+            let bmi = getBmi(heightEl.value, weightEl.value);
 
-        let radius = 10;
-        let area = radius * radius * pi;
-        const result = "半徑為:" + radius + " 面積為:" + area
-        console.log(result);
-        document.write("<h3>" + result + "</h3>");
-        alert(result);
+            console.log(bmi);
 
-        // prompt -> 讓使用者透過鍵盤輸入資料
-        let radius2 = prompt("請輸入半徑:");
-
-        // isNaN -> 用來判斷是否為數值
-        console.log(isNaN(radius2));
-
-        if (isNaN(radius2)) {
-            alert("請輸入正確數值!");
+            //document.querySelector("#result").innerHTML = "<h1>BMI:" + bmi + "</h1>";
+            //使用 `(esc 鍵下符號) + ${} 可以達到類似 python 的變數與字串結合的寫法!
+            document.querySelector("#result").innerHTML = `<h1>BMI:${bmi}</h1>`;
         }
-        else {
-            let area2 = radius2 * radius2 * pi;
-            const result2 = "半徑為:" + radius2 + " 面積為:" + area2
-            console.log(result2);
-            document.write("<h3>" + result2 + "</h3>");
-            alert(result2);
-        }
-
-        // 判斷式
-        if (x > 10) {
-
-        } else if (y > 20) {
-
-        } else {
-            console.log(x, y);
-        }
-
-        // 等號數量的差異
-        x = "10";
-        y = 10;
-        console.log("兩個等號 : " + (x == y)); // 兩個等號 : 只比較值是否相同
-        console.log("三個等號 : " + (x === y)); // 三個等號代表 : 型態 跟 值 都要相等
-
-        // and or not
-        if (x >= 10 || y <= 30) {
-            console.log("1");
-        }
-
-        // true false
-        let a = false;
-        if (!a) {
-            console.log(a);
-        }
-
-
-        let height = prompt("請輸入身高(cm)");
-        let weight = prompt("請輸入體重(kg)");
-        let bmi = getBmi(height, weight);
-
-        alert("BMI:" + bmi);
 
         // 計算 BMI 函式
         function getBmi(height, weight) {
             const bmi = weight / (height / 100) ** 2;
-            console.log(bmi.toFixed(2)); // .toFixed(@小數點後幾位數) -> 取特定長度的浮點數
+            // .toFixed(@小數點後幾位數) -> 取特定長度的浮點數
+            //console.log(bmi.toFixed(2)); 
             return bmi.toFixed(2);
         }
 

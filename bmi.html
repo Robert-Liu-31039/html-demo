@@ -83,6 +83,21 @@
             color: yellow;
         }
 
+        #info {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        #result {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .comment {
+            font-size: 1.5rem;
+            font-weight: 100;
+        }
+
         /* 響應式設計 CSS 的寫法 */
         @media screen and (max-width:1024px) {
             form {
@@ -121,8 +136,8 @@
         <label for="weight">體重</label>
         <input id="weight" name="weight" type="number" step="0.1">
         <div class="panel1">
-            <input type="radio" name="sex" id="male" checked>男
-            <input type="radio" name="sex" id="female">女
+            <input type="radio" name="sex" id="male" value="男生" checked>男
+            <input type="radio" name="sex" id="female" value="女生">女
             <label for="country">居住縣市</label>
             <select name="country" id="country">
                 <option value="台北市">台北市</option>
@@ -135,7 +150,16 @@
         </div>
         <button type="button" onclick="calc()">計算</button>
     </form>
-    <div id="result"></div>
+    <div id="info">
+        <p>姓名: <span class="name"></span></p>
+        <p>年齡: <span class="age"></span></p>
+        <p>性別: <span class="sex"></span></p>
+        <p>居住城市: <span class="country"></span></p>
+    </div>
+    <div id="result">
+        BMI: <span class="bmi"></span>
+        <p class="comment"></p>
+    </div>
     <a href="index.html">首頁</a>
     <script>
         const usernameEl = document.querySelector("#username");
@@ -149,13 +173,56 @@
 
 
         function calc() {
-            let bmi = getBmi(heightEl.value, weightEl.value);
+            const height = heightEl.value;
+            const weight = weightEl.value;
 
-            console.log(bmi);
+            // 判斷 height 跟 weight 要大於0 且 是數值(not NaN)
+            if (height <= 0 || weight <= 0) {
+                alert("請輸入正確數值!");
+                return;
+            }
+
+            let bmi = getBmi(height, weight);
+            let result = getComment(bmi);
+            console.log(bmi, result[0], result[1]);
 
             //document.querySelector("#result").innerHTML = "<h1>BMI:" + bmi + "</h1>";
+
             //使用 `(esc 鍵下符號) + ${} 可以達到類似 python 的變數與字串結合的寫法!
-            document.querySelector("#result").innerHTML = `<h1>BMI:${bmi}</h1>`;
+            /*document.querySelector("#result").innerHTML = `<h1>BMI:${bmi}</h1>
+                <p>${comment}</p>`;*/
+
+            let bmiEl = document.querySelector(".bmi");
+            bmiEl.innerText = bmi;
+            bmiEl.style.color = result[1];
+            document.querySelector(".comment").innerText = result[0];
+
+            document.querySelector(".name").innerText = usernameEl.value;
+            document.querySelector(".age").innerText = ageEl.value;
+            document.querySelector(".sex").innerText = document.querySelector("input[name='sex']:checked").value;
+            document.querySelector(".country").innerText = countryEl.value;
+        }
+
+        function getComment(bmi) {
+            let comment, color;
+            if (bmi < 18.5) {
+                comment = "「體重過輕」，需要多運動，均衡飲食，以增加體能，維持健康！";
+                color = "#1E90FF";
+            }
+            else if (bmi < 24) {
+                comment = "恭喜！「健康體重」，要繼續保持！";
+                color = "green";
+            }
+            else if (bmi < 27) {
+                comment = "「體重過重」了，要小心囉，趕快力行「健康體重管理」！";
+                color = "orange";
+            }
+            else {
+                comment = "啊～「肥胖」，需要立刻力行「健康體重管理」囉！";
+                color = "red";
+            }
+
+            return [comment, color];
         }
 
         // 計算 BMI 函式

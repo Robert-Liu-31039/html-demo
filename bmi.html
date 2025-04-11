@@ -117,6 +117,18 @@
             background-color: darkred;
         }
 
+        table {
+            background-color: rgb(220, 255, 243);
+            margin: 0 auto;
+            width: 60%;
+            font-family: 'Courier New', Courier, monospace;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: darkorange;
+        }
+
         /* 響應式設計 CSS 的寫法 */
         @media screen and (max-width:1024px) {
             form {
@@ -180,7 +192,7 @@
         BMI: <span class="bmi"></span>
         <p class="comment"></p>
     </div>
-
+    <div id="tableRecord"></div>
     <script>
         const usernameEl = document.querySelector("#username");
         const ageEl = document.querySelector("#age");
@@ -197,14 +209,20 @@
             count: 0
         }
 
+        //陣列
+        let datas = JSON.parse(localStorage.getItem("datas")) || [];
+
         //取得本地網頁儲存的資料
         record = localStorage.getItem("record");
+
         if (record) {
             data = JSON.parse(record); //JSON.parse() 將字串轉為物件
 
             //加入顯示紀錄動作
             let avg = (data.total / data.count).toFixed(1);
             document.querySelector("#record").innerHTML = `紀錄人數:${data.count} 平均BMI:${avg}`;
+
+            document.querySelector("#tableRecord").innerHTML = renderTable(datas);
         }
         console.log(record);
 
@@ -213,6 +231,8 @@
         deleteRecordBtnEl.addEventListener("click", function () {
             //刪除本地網頁儲存的資料
             localStorage.removeItem("record");
+            localStorage.removeItem("bmi");
+            localStorage.removeItem("datas");
 
             //甚麼都不做，直接刷新本頁面，將頁面上的資料清掉
             window.location.href = "";
@@ -268,7 +288,70 @@
             //本地網頁儲存的資料
             localStorage.setItem("record", JSON.stringify(data)); //JSON.stringify() 將物件轉為字串
             localStorage.setItem("bmi", bmi);
+
+            //儲存單筆資料
+            let person = {
+                name: usernameEl.value,
+                age: ageEl.value,
+                sex: sexEl.value,
+                country: countryEl.value,
+                height: height,
+                weight: weight,
+                bmi: bmi
+            }
+
+            datas.push(person); //push() -> 將資料放入陣列之內
+            console.log(datas);
+
+            //本地網頁儲存的資料
+            localStorage.setItem("datas", JSON.stringify(datas));
+
+            document.querySelector("#tableRecord").innerHTML = renderTable(datas);
         }
+
+        function addRow(data) {
+            return `
+                <tr>
+                    <td>${data.name}</td>
+                    <td>${data.country}</td>
+                    <td>${data.age}</td>
+                    <td>${data.sex}</td>
+                    <td>${data.height}</td>
+                    <td>${data.weight}</td>
+                    <td>${data.bmi}</td>
+                </tr>
+            `;
+        }
+
+        function renderTable(datas) {
+            let tableData = "";
+
+            for (let i = 0; i < datas.length; i++) {
+                tableData += addRow(datas[i]);
+            }
+
+            let tableHtml = `
+                <table border="1px">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>縣市</th>
+                            <th>年齡</th>
+                            <th>性別</th>
+                            <th>身高</th>
+                            <th>體重</th>
+                            <th>BMI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tableData}
+                    </tbody>
+                </table>
+            `;
+
+            return tableHtml;
+        }
+
 
         function getComment(bmi) {
             let comment, color;

@@ -60,7 +60,7 @@
             width: 120px;
             height: 35px;
             margin-top: 1rem;
-            background-color: coral;
+            background-color: darkgreen;
             border: none;
             font-size: 16px;
             border-radius: 6px;
@@ -113,6 +113,10 @@
             margin-top: 24px;
         }
 
+        #deleteRecordBtn {
+            background-color: darkred;
+        }
+
         /* 響應式設計 CSS 的寫法 */
         @media screen and (max-width:1024px) {
             form {
@@ -138,6 +142,7 @@
 
 <body>
     <div class="main-title">BMI計算機</div>
+
     <div id="record"></div>
     <form class="form-style" action="">
         <label for="username">姓名</label>
@@ -165,6 +170,7 @@
             </select>
         </div>
         <button type="button" onclick="calc()">計算</button>
+        <button id="deleteRecordBtn" type="button">刪除紀錄</button>
         <a href="index.html">首頁</a>
     </form>
     <div id="info">
@@ -185,7 +191,6 @@
         console.log(usernameEl, ageEl, heightEl, weightEl, countryEl, sexEl,
             heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
-
         //物件
         let data = {
             total: 0,
@@ -202,6 +207,24 @@
             document.querySelector("#record").innerHTML = `紀錄人數:${data.count} 平均BMI:${avg}`;
         }
         console.log(record);
+
+        const deleteRecordBtnEl = document.querySelector("#deleteRecordBtn");
+        // addEventListener <- 增加事件監聽的行為
+        deleteRecordBtnEl.addEventListener("click", function () {
+            //刪除本地網頁儲存的資料
+            localStorage.removeItem("record");
+
+            //甚麼都不做，直接刷新本頁面，將頁面上的資料清掉
+            window.location.href = "";
+
+            //清空物件
+            /*data = {
+                total: 0,
+                count: 0
+            }*/
+
+            //document.querySelector("#info").innerHTML = "";
+        });
 
         function calc() {
             const height = heightEl.value;

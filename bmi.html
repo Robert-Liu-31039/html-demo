@@ -7,149 +7,12 @@
     <title>BMI計算機</title>
 
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/bmi.css">
     <style>
-        /* 
-            可以繼承 css/style.css 內的內容，
-            再增加自己的變化
-         */
-        .main-title {
-            color: rgb(102, 255, 0);
-        }
 
-        form {
-            /* 將 form 當作標的物，讓別的物件來做參照使用 */
-            position: relative;
-
-            background-color: chocolate;
-            width: 60%;
-
-            /* 
-            當有私訂設定 width 時，
-            margin 的左右要給 auto 才會繼承 body 內的自動置中
-            */
-            margin: 24px auto;
-
-            padding: 24px;
-            border-radius: 12px;
-
-            /* 讓區塊變得有立體的樣式 */
-            box-shadow: 10px 10px 5px rgb(75, 83, 85, 0.8);
-        }
-
-        input {
-            margin: 6px 0px;
-            font-size: 20px;
-            text-align: center;
-            border-radius: 6px;
-        }
-
-        label {
-            font-size: 20px;
-            text-shadow: 1px 1px 2px;
-        }
-
-        .panel1 {
-            background-color: aliceblue;
-            padding: 6px;
-            border: 2px dotted pink;
-            margin: 6px;
-        }
-
-        button {
-            width: 120px;
-            height: 35px;
-            margin-top: 1rem;
-            background-color: darkgreen;
-            border: none;
-            font-size: 16px;
-            border-radius: 6px;
-            color: white;
-        }
-
-        button:hover {
-            background-color: cadetblue;
-            cursor: pointer;
-        }
-
-        a {
-            /* 設定再參照物件中，本身的絕對位置 */
-            position: absolute;
-
-            background-color: red;
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
-
-            /* 去除底線 */
-            text-decoration: none;
-
-            right: 6px;
-            top: 12px;
-        }
-
-        a:hover {
-            color: yellow;
-        }
-
-        #result {
-            font-size: 2rem;
-            font-weight: bold;
-            background-color: rgb(197, 245, 213);
-            width: 80%;
-            margin: 24px auto;
-            padding: 12px 24px;
-            border: 1px dotted darkblue;
-        }
-
-        .comment {
-            font-size: 1.5rem;
-            font-weight: 200;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        #record {
-            font-size: 32px;
-            margin-top: 24px;
-        }
-
-        #deleteRecordBtn {
-            background-color: darkred;
-        }
-
-        table {
-            background-color: rgb(220, 255, 243);
-            margin: 0 auto;
-            width: 60%;
-            font-family: 'Courier New', Courier, monospace;
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: darkorange;
-        }
-
-        /* 響應式設計 CSS 的寫法 */
-        @media screen and (max-width:1024px) {
-            form {
-                width: 70%;
-            }
-
-            label {
-                font-size: 36px;
-            }
-        }
-
-        @media screen and (max-width:600px) {
-            form {
-                width: 80%;
-            }
-
-            label {
-                font-size: 24px;
-            }
-        }
     </style>
+
+    <script src="js/bmi.js"></script>
 </head>
 
 <body>
@@ -229,6 +92,10 @@
         const deleteRecordBtnEl = document.querySelector("#deleteRecordBtn");
         // addEventListener <- 增加事件監聽的行為
         deleteRecordBtnEl.addEventListener("click", function () {
+            if (!confirm("是否確定刪除?!")) {
+                return;
+            }
+
             //刪除本地網頁儲存的資料
             localStorage.removeItem("record");
             localStorage.removeItem("bmi");
@@ -350,37 +217,6 @@
             `;
 
             return tableHtml;
-        }
-
-
-        function getComment(bmi) {
-            let comment, color;
-            if (bmi < 18.5) {
-                comment = "「體重過輕」，需要多運動，均衡飲食，以增加體能，維持健康！";
-                color = "#1E90FF";
-            }
-            else if (bmi < 24) {
-                comment = "恭喜！「健康體重」，要繼續保持！";
-                color = "green";
-            }
-            else if (bmi < 27) {
-                comment = "「體重過重」了，要小心囉，趕快力行「健康體重管理」！";
-                color = "orange";
-            }
-            else {
-                comment = "啊～「肥胖」，需要立刻力行「健康體重管理」囉！";
-                color = "red";
-            }
-
-            return [comment, color];
-        }
-
-        // 計算 BMI 函式
-        function getBmi(height, weight) {
-            const bmi = weight / (height / 100) ** 2;
-            // .toFixed(@小數點後幾位數) -> 取特定長度的浮點數
-            //console.log(bmi.toFixed(2)); 
-            return bmi.toFixed(2);
         }
 
     </script>

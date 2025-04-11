@@ -108,6 +108,11 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
+        #record {
+            font-size: 32px;
+            margin-top: 24px;
+        }
+
         /* 響應式設計 CSS 的寫法 */
         @media screen and (max-width:1024px) {
             form {
@@ -187,6 +192,17 @@
             count: 0
         }
 
+        //取得本地網頁儲存的資料
+        record = localStorage.getItem("record");
+        if (record) {
+            data = JSON.parse(record); //JSON.parse() 將字串轉為物件
+
+            //加入顯示紀錄動作
+            let avg = (data.total / data.count).toFixed(1);
+            document.querySelector("#record").innerHTML = `紀錄人數:${data.count} 平均BMI:${avg}`;
+        }
+        console.log(record);
+
         function calc() {
             const height = heightEl.value;
             const weight = weightEl.value;
@@ -225,6 +241,10 @@
             console.log(data);
             let avg = (data.total / data.count).toFixed(1);
             document.querySelector("#record").innerHTML = `紀錄人數:${data.count} 平均BMI:${avg}`;
+
+            //本地網頁儲存的資料
+            localStorage.setItem("record", JSON.stringify(data)); //JSON.stringify() 將物件轉為字串
+            localStorage.setItem("bmi", bmi);
         }
 
         function getComment(bmi) {

@@ -46,6 +46,7 @@
         </div>
         <button type="button" onclick="calc()">計算</button>
         <button id="deleteRecordBtn" type="button">刪除紀錄</button>
+        <button id="downloadBtn" type="button" onclick="save()">儲存紀錄</button>
         <a href="index.html">首頁</a>
     </form>
     <div id="info">
@@ -92,6 +93,7 @@
         const deleteRecordBtnEl = document.querySelector("#deleteRecordBtn");
         // addEventListener <- 增加事件監聽的行為
         deleteRecordBtnEl.addEventListener("click", function () {
+            // confirm() -> 讓使用者確定是否要做刪除的行為
             if (!confirm("是否確定刪除?!")) {
                 return;
             }
@@ -217,6 +219,41 @@
             `;
 
             return tableHtml;
+        }
+
+        function save() {
+            //產生一個超連結，儲存 JSON 格式
+            let datas = JSON.parse(localStorage.getItem("datas"));
+            console.log(datas);
+
+            if (datas == null || datas.length == 0) {
+                alert('目前無紀錄!');
+                return;
+            }
+
+            //儲存 JSON 格式
+            let jsonStr = JSON.stringify(datas)
+
+            //產生 二進制
+            const blobData = new Blob([jsonStr], { type: "application/json" });
+
+            //將二進制的內容轉為 url，且記憶在記憶體上 
+            const url = URL.createObjectURL(blobData);
+            console.log(url);
+
+            //產生一個超連結的物件
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "records.json";
+            document.body.appendChild(a);
+            a.text = "download";
+            a.click();
+
+            //移除超連結的物件，為了讓畫面好看
+            document.body.removeChild(a);
+
+            //釋放記憶在記憶體上的東西
+            URL.revokeObjectURL(url);
         }
 
     </script>
